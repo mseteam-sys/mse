@@ -1,0 +1,28 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ category }} Blogs
+{% endblock %}
+
+{% block body %}
+<div class="blogs-page">
+    <div class="container">
+        <div class="categories">
+            <span class="eighteen">Categories : </span>
+            {% for cat in cats %}
+            <span><a href="{% url 'blogs' pk=cat.name %}" class="category eighteen">{{ cat.name }}</a></span>
+            {% endfor %}
+        </div>
+        <div class="blogs">
+            {% for blog in blogs %}
+            <div class="blog">
+                <img src="{{ blog.banner.url }}" alt="">
+                <a href="{% url 'blog' pk=blog.blog_id %}" class="bold eighteen">{{ blog.title }}</a>
+                <span class="twelve light">Date : {{ blog.created }}    |    {{ blog.minutecount }} mins</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

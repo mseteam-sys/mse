@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/icons/favicon.ico' %}">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+</head>
+<body>
+
+    {% include 'mse/navbar.html' %}
+
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+
+    {% include 'mse/footer.html' %}
+
+    <script>
+        let openHam = document.querySelector('#openHam');
+        let closeHam = document.querySelector('#closeHam');
+        let navigationItems = document.querySelector('#navigation-items');
+
+        const hamburgerEvent = (navigation, close, open) => {
+            navigationItems.style.display = navigation;
+            closeHam.style.display = close;
+            openHam.style.display = open;
+        };
+
+        openHam.addEventListener('click', () => hamburgerEvent("flex", "block", "none"));
+        closeHam.addEventListener('click', () => hamburgerEvent("none", "none", "block"));
+    </script>
+
+    <script>
+        function CopyLink(){
+            navigator.clipboard.writeText(window.location.href);
+            alert("Link Copied!");
+        }
+    </script>
+
+    <script>
+        function reveal(s){
+            document.getElementById(s).style.display = "block"
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,20 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+Change password
+{% endblock %}
+
+{% block body %}
+<div class="conatiner">
+    <p class="regular fourteen warning" style="text-align: center;">{{ message }}</p>
+    <h2 style="text-align: center;">Reset password for {{ email }}</h2>
+    <form action="{% url 'resetpass' pk=email %}" method="POST">
+        {% csrf_token %}
+        <input type="password" name="pass1" id="inputfield" placeholder="Enter password">
+        <input type="password" name="pass2" id="inputfield" placeholder="Confirm password">
+        <input type="submit" value="Submit" class="submit-btn" id="submit-btn">
+    </form>
+    <p class="regular eighteen" style="text-align: center;">You will get a otp code to verify the password changing process.</p>
+</div>
+{% endblock %}

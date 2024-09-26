@@ -1,0 +1,42 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ category }} Books
+{% endblock %}
+
+{% block body %}
+<div class="blogs-page">
+    <div class="container">
+        <div class="categories">
+            <span class="eighteen">Categories : </span>
+            {% for cat in cats %}
+            <span><a href="{% url 'books' pk=cat.name %}" class="category eighteen">{{ cat.name }}</a></span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="books-page">
+    <div class="container">
+        <div class="books">
+            {% for book in books %}
+            <div class="book">
+                <div class="book-image">
+                    <img src="{{ book.book_image.url }}" alt="">
+                </div>
+                <div class="book-name-link">
+                    <div class="name">
+                        <h2>{{ book.book_title }}</h2>
+                        <span class="eighteen regular">By : {{ book.book_writer }}</span>
+                        <span class="eighteen regular">Size : {{ book.book_size }} MB</span>
+                    </div>
+                    <div class="link">
+                        <a href="{{ book.book_file.url }}" class="fourteen bold" download>Download</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

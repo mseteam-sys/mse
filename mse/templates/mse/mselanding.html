@@ -1,0 +1,49 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+RU Students Portal
+{% endblock %}
+
+{% block body %}
+    {% if member.ru %}
+    <div class="rumse">
+        <div class="container">
+            <div class="name-resources">
+                <div class="name">
+                    <img src="{{ member.userimage.url }}" alt="">
+                    <span class="fourteen bold">Name : {{ member.fullname }}</span>
+                </div>
+                <div class="resources">
+                    <div class="resource-upload">
+                        <span><a href="{% url 'mse' %}" class="eighteen bold">Resources</a></span>
+                        <span><a href="{% url 'uploadresource' %}" class="eighteen bold blue">Upload your resource</a></span>
+                    </div>
+                    <div class="resource-links">
+                        {% for sem in sems %}
+                        <span><a href="{% url 'mse2' pk=sem.sem_id %}" class="eighteen regular">{{ sem.name }}</a></span>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <hr style="margin: 40px 0px;">
+            <span class="eighteen bold">Experts :</span>
+            <div class="teachers">
+                {% for teacher in teachers %}
+                <div class="teacher">
+                    <img src="{{ teacher.image.url }}" alt="">
+                    <div class="texts">
+                        <p class="bold eighteen">{{ teacher.name }}</p>
+                        <p class="regular fourteen blur">Expertise : {{ teacher.expertise }}</p>
+                        <p class="regular fourteen blur">Researchgate profile : <a href="{{ teacher.link }}" class="blue">Go to profile</a></p>
+                        <p class="regular fourteen blur">Contact : <span class="blue">{{ teacher.email|safe }}</span></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <h1 class="eighteen" style="text-align: center;">You are not authorized to this page. Please login via Rajshahi University Email.</h1>
+    {% endif %}
+{% endblock %}

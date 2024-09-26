@@ -1,0 +1,22 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+RU Students Portal
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="ru-mse-2">
+        <span><a href="javascript:history.back()" class="eighteen regular">&#8592; Go back</a></span>
+        <div><span>{{ sem.name }}</span></div>
+        <div class="courselists">
+            {% for course in courses %}
+            <span><a href="{% url 'mse3' pk=course.course_code %}" class="eighteen regular">{{ course.name }}</a></span>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

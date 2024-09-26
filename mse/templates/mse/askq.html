@@ -1,0 +1,21 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+Ask question
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="askq-page">
+        <span><a href="javascript:history.back()" class="twenty blue regular">&#8592; Go back</a></span>
+        <span class="twentyfour regular">Ask a question</span>
+        <form action="{% url 'askq' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="qtitle" id="inputfield" class="inputfield" placeholder="Question title">
+            <textarea name="qtext" id="textinputfield" placeholder="Question details"></textarea>
+            <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+        </form>
+    </div>
+</div>
+{% endblock %}

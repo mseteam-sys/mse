@@ -1,0 +1,21 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+Log In Here
+{% endblock %}
+
+{% block body %}
+<div class="conatiner">
+    <p class="regular fourteen warning" style="text-align: center;">{{ message }}</p>
+    <h2 style="text-align: center;">Log In Here</h2>
+    <form action="{% url 'log-in' %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="email" id="inputfield" placeholder="Enter email">
+        <input type="password" name="password" id="inputfield" placeholder="Enter password">
+        <input type="submit" value="Submit" class="submit-btn" id="submit-btn">
+    </form>
+    <p class="regular eighteen" style="text-align: center;">Not a member? <span><a href="{% url 'sign-in' %}" class="blue">Sign In</a></span> here.</p>
+    <p class="regular eighteen" style="text-align: center;"><a href="{% url 'forgot' %}" class="warning">Forgot password?</a></p>
+</div>
+{% endblock %}

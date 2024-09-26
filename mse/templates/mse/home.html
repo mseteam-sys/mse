@@ -1,0 +1,57 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+Materials Science Hub - Home
+{% endblock %}
+
+{% block body %}
+
+
+    <div class="first-block">
+        <img src="{% static 'images/icons/image0-1.jpg' %}" alt="" width="100%">
+        <div class="container">
+            <h1><span>Inspiring</span> Progress...</h1>
+            <h1>Redefining <span>Boundaries</span>...</h1>
+            <p class="sixteen">Encapsulates the commitment to driving innovation in Materials Science & Engineering , pushing the boundaries of what’s possible and inspiring progress in various fields.</p>
+        </div>
+    </div>
+    <div class="second-block index-block">
+        <div class="container">
+            <div class="texts">
+                <span class="thirty">Introducing our <span class="blue">new</span></span>
+                <span class="forty">Open Discussion Forum (ODF)</span>
+                <span class="eighteen">A platform to discuss about Materials. Share your problems here and find a solution together. Sharing is Caring.</span>
+                <span class="a"><a href="{% url 'odf' %}" class="thirty white">Join ODF now</a></span>
+            </div>
+            <div class="pic">
+                <img src="{% static 'images/icons/image1.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="third-block index-block">
+        <div class="container">
+            <div class="pic">
+                <img src="{% static 'images/icons/image2.jpg' %}" alt="">
+            </div>
+            <div class="texts">
+                <span class="forty">Get access to most <span class="green">necessary</span> books. <br>Share your books too &lt;3</span>
+                <span class="a"><a href="{% url 'books' pk='All' %}" class="thirty white">Go to Books</a></span>
+            </div>
+        </div>
+    </div>
+    <div class="fourth-block index-block">
+        <div class="container">
+            <div class="texts">
+                <span class="thirty">Read and write blogs for</span>
+                <span class="forty">Materials Science <span class="blue">Engineers</span></span>
+                <span class="a"><a href="{% url 'blogs' pk='All' %}" class="thirty white">Go to Blogs</a></span>
+            </div>
+            <div class="pic">
+                <img src="{% static 'images/icons/image3.jpg' %}" alt="">
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

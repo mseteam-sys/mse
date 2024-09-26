@@ -1,0 +1,18 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+OTP Verification
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <p class="regular fourteen warning" style="text-align: center;">{{ message }}</p>
+    <h3 style="text-align: center;">We have sent an otp code to {{ pk }} . Please verify to continue.</h3>
+    <form action="{% url 'otp' pk=pk %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="otpcode" id="inputfield" placeholder="Enter OTP">
+        <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+    </form>
+</div>
+{% endblock %}

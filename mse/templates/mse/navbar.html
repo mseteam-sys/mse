@@ -1,0 +1,29 @@
+{% load static %}
+
+<header>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'images/icons/logo.png' %}" alt=""></a>
+            </div>
+            <div class="links">
+                <ul id="navigation-items">
+                    <li><span><a href="{% url 'blogs' pk='All' %}" {% if "/blogs/" in request.path %} class="active"{% endif %}>Blogs</a></span></li>
+                    <li><span><a href="{% url 'books' pk='All' %}" {% if "/books/" in request.path %} class="active"{% endif %}>Books</a></span></li>
+                    <li><span><a href="{% url 'mse' %}" {% if "/ru-mse/" in request.path %} class="active"{% endif %}>RU - MSE</a></span></li>
+                    <li><span><a href="{% url 'odf' %}" {% if "/odf/" in request.path %} class="active"{% endif %}>ODF</a></span></li>
+                    <li><span><a href="{% url 'about' %}" {% if "/about-us/" in request.path %} class="active"{% endif %}>About Us</a></span></li>
+                    {% if user.is_authenticated %}
+                    <li><span class="login-btn"><a href="{% url 'log-out' %}">Log Out</a></span></li>
+                    {% else %}
+                    <li><span class="login-btn"><a href="{% url 'log-in' %}">Log In</a></span></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <div class="hamburger">
+                <span id="openHam">&#9776;</span>
+                <span id="closeHam">&#x2716;</span>
+            </div>
+        </div>
+    </nav>
+</header>

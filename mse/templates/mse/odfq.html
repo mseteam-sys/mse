@@ -1,0 +1,68 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ q.question_id }}
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="odfq">
+        <p class="regular eighteen">
+            <b>Title : </b>{{ q.question_title|safe }}
+        </p>
+        <p class="regular eighteen">
+            <b>Question : </b>{{ q.question_description|safe }}
+        </p>
+        {% if user.is_authenticated %}
+        <form action="{% url 'answer-question' pk=q.question_id %}" method="POST">
+            {% csrf_token %}
+            <textarea name="ans" id="textinputfield2" placeholder="Answer this question"></textarea>
+            <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+        </form>
+        {% endif %}
+    </div>
+    <div class="odfa">
+        <p class="regular fourteen">Answers ({{ q.total_answer }})</p>
+        {% for ans in answers %}
+        <div class="ans">
+            <div class="pp-text">
+                <div class="main-ans">
+                    <img src="{{ ans.userimage.url }}" alt="">
+                    <span class="fourteen regular"><span><a href="" class="blue">{{ ans.fullname }}</a></span><br>{{ ans.answer_description|safe }} {% if ans.username == user.username %} <br><a href="{% url 'delete-answer' pk=ans.answer_id %}" class="warning">    Delete</a>{% endif %}</span>
+                </div>
+                {% for reply in ans.replies.all %}
+                <div class="reply-ans">
+                    <div class="main-ans">
+                        <img src="{{ reply.userimage.url }}" alt="">
+                        <span class="fourteen regular"><span><a href="" class="blue">{{ reply.fullname }}</a></span><br>{{ reply.reply_answer_description|safe }} {% if reply.username == user.username %} <br><a onclick="reveal('{{ reply.reply_answer_id }}')" class="blue">Edit   </a><a href="{% url 'delete-reply-answer' pk=reply.reply_answer_id %}" class="warning">    Delete</a>{% endif %}</span>
+                    </div>
+                </div>
+                <div class="reply-box" id="{{ reply.reply_answer_id }}">
+                    <form action="{% url 'edit-reply-answer' pk=reply.reply_answer_id %}" class="reply-form" method="POST">
+                        {% csrf_token %}
+                        <textarea name="ans" id="textinputfield" placeholder="Reply">{{ reply.reply_answer_description|safe }}</textarea>
+                        <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+                    </form>
+                </div>
+                {% endfor %}
+                <div class="reply-box" id="{{ ans.answer_id }}">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'reply-answer' pk=ans.answer_id %}" class="reply-form" method="POST">
+                        {% csrf_token %}
+                        <textarea name="ans" id="textinputfield" placeholder="Reply"></textarea>
+                        <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <a onclick="reveal('{{ ans.answer_id }}')" class="reply fourteen blue bold">&#11148; Reply</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

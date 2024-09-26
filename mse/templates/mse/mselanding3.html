@@ -1,0 +1,23 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+RU Students Portal
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="ru-mse-3">
+        <span><a href="javascript:history.back()" class="twenty blue regular">&#8592; Go back</a></span>
+        <span class="twentyfour regular">{{ course_code }}</span>
+        <ul type="square">
+            {% for resource in resources %}
+            <li><a href="{{ resource.file.url }}" class="twentyfour bold" download>{{ resource.name }} <span class="blur">( {{ resource.size }}MB )</span></a></li>
+            <hr>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+{% endblock %}

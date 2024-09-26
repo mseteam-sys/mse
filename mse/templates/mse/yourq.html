@@ -1,0 +1,32 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+My Questions
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="odf">
+        <div class="buttons">
+            <span><a href="{% url 'askq' %}" class="eighteen bold">Ask a question</a></span>
+            <span><a href="{% url 'yourq' %}" class="eighteen bold ask">Your question</a></span>
+            <span><input type="text" name="search" id="search" class="inputfield" placeholder="Search"></span>
+        </div>
+        <div class="sixteen regular" style="margin-top: 30px;">Your questions</div>
+        <div class="questions">
+            {% for q in qs %}
+            <div class="question">
+                <div class="titles">
+                    <div class="title eighteen bold">{{ q.question_title }}</div>
+                    <span class="blur twelve regular">{{ q.total_answers }} answers</span>
+                </div>
+                <span><a href="{% url 'odfq' pk=q.question_id %}" class="sixteen regular">View</a></span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

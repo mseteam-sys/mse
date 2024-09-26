@@ -1,0 +1,36 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+Upload Document
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="upload-page">
+            <span><a href="javascript:history.back()" class="twenty blue regular">&#8592; Go back</a></span>
+            <span class="twentyfour regular">Upload a document >>></span>
+            <div class="form">
+                <form action="{% url 'uploadresource' %}" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <select name="semester" id="inputfield" class="inputfield" aria-placeholder="Select Semester &#10549;">
+                        <option value="0"><span> --- Select Semster --- </span></option>
+                        {% for sem in sems %}
+                        <option value="{{ sem.sem_id }}"><span>{{ sem.name }}</span></option>
+                        {% endfor %}
+                    </select>
+                    <select name="course" id="inputfield" class="inputfield" aria-placeholder="Select Semester &#10549;">
+                        <option value="0"><span> --- Select Course --- </span></option>
+                        {% for course in courses %}
+                        <option value="{{ course.course_code }}"><span class="course1">{{ course.name }}</span></option>
+                        {% endfor %}
+                    </select>
+                    <input type="file" name="file" id="inputfield" class="inputfield fileinput">
+                    <input type="submit" value="Upload Now" class="submit-btn" id="inputfield submit-btn">
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

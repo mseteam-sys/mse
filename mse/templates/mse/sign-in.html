@@ -1,0 +1,23 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+Sign In Here
+{% endblock %}
+
+{% block body %}
+<div class="conatiner">
+    <p class="regular fourteen warning" style="text-align: center;">{{ message }}</p>
+    <h2 style="text-align: center;">Sign In Here</h2>
+    <form action="{% url 'sign-in' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input type="text" name="name" id="inputfield" placeholder="Enter full name">
+        <input type="text" name="email" id="inputfield" placeholder="Enter email">
+        <label for="file">Upload profile image</label>
+        <input type="file" name="file" id="inputfield" class="fileinput">
+        <input type="password" name="password" id="inputfield" placeholder="Enter password">
+        <input type="submit" value="Submit" class="submit-btn" id="submit-btn">
+    </form>
+    <p class="regular eighteen" style="text-align: center;">Already a member? <span><a href="{% url 'log-in' %}" class="blue">Log In</a></span> here.</p>
+</div>
+{% endblock %}

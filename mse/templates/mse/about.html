@@ -1,0 +1,59 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+About - The Team
+{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="about">
+        <div class="mission-vision">
+            <div class="mission">
+                <p class="regular eighteen"><b class="blue">Mission : </b>At Materials Science Hub, our mission is to cultivate a thriving global community of students, researchers, and enthusiasts passionate about materials science and engineering. Through our comprehensive resources, interactive forums, and collaborative environment, we aim to empower individuals with the knowledge, tools, and support necessary to excel in their academic pursuits and contribute meaningfully to the advancement of materials science and its applications.</p>
+            </div>
+            <div class="mission">
+                <p class="regular eighteen"><b class="blue">Vision : </b>Our vision at Materials Science Hub is to become the premier online destination for students of materials science and engineering worldwide. We envision a platform where learners can freely exchange ideas, explore cutting-edge research, and access a wealth of educational materials tailored to their needs. By fostering a culture of innovation, collaboration, and continuous learning, we aspire to drive the next generation of breakthroughs in materials science and shape the future of technology and industry.</p>
+            </div>
+        </div>
+        <div class="members">
+            <div class="member">
+                <div class="image">
+                    <img src="{% static 'images/icons/paul.jpg' %}" alt="">
+                </div>
+                <div class="name">
+                    <span class="bold eighteen">Apurbo Paul</span>
+                    <span class="regular fourteen">Founder</span>
+                </div>
+                <div class="text">
+                    <p class="regular sexteen">Hi, this is Apurbo Paul. I hold a B.Sc in Materials Science and Engineering from the University of Rajshahi. I am from Batch - 13. Currently, I am pursuing my Master's degree in Biomechanics at the University of Nebraska Omaha, USA.</p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="image">
+                    <img src="{% static 'images/icons/uch.jpg' %}" alt="">
+                </div>
+                <div class="name">
+                    <span class="bold eighteen">Tanvir Saklan</span>
+                    <span class="regular fourteen">Website Developer</span>
+                </div>
+                <div class="text">
+                    <p class="regular sexteen">Hi, this is Tanvir Saklan from Materials Science & Engineering (RU) , Batch - 16 . I also work as a python developer , network manager and cybersecurity specialist as freelancer. I am studying Data Communication and Signal Processing.</p>
+                </div>
+            </div>
+            <div class="member">
+                <div class="image">
+                    <img src="{% static 'images/icons/saiful.jpg' %}" alt="">
+                </div>
+                <div class="name">
+                    <span class="bold eighteen">Saiful Islam</span>
+                    <span class="regular fourteen">Planning & Maintainance</span>
+                </div>
+                <div class="text">
+                    <p class="regular sexteen">"Hi there! I'm Saiful Islam, a student from batch 16 of the Department of Materials Science and Engineering. I'm excited to be part of the Materials Science Hub, where I've planned the structure of the website and am currently managing it."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+{{ blog.title }}
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="blog-page">
+            <div class="blog-header">
+                <div class="header-text">
+                    <h2>{{ blog.title }}</h2>
+                    <span class="fourteen light">Author : {{ blog.author }}</span>
+                    <span class="fourteen light">Date published : {{ blog.created }}</span>
+                    <span class="fourteen light">Read time : {{ blog.minutecount }} mins</span>
+                </div>
+                <div class="header-image">
+                    <img src="{{ blog.banner.url }}" alt="">
+                </div>
+            </div>
+            <hr>
+            <div class="blog-body">
+                <p class="fourteen regular">{{ blog.main_body|safe }}</p>
+                {% if blog.second_body %}
+                <div><img src="{{ blog.second_image.url }}" alt="" style="text-align: center; border-radius: 10px;width: 300px; height: auto;"></div>
+                <p class="fourteen regular">{{ blog.second_text|safe }}</p>
+                {% endif %}
+                {% if blog.third_body %}
+                <div><img src="{{ blog.third_image.url }}" alt="" style="text-align: center; border-radius: 10px;width: 300px; height: auto;"></div>
+                <p class="fourteen regular">{{ blog.third_text|safe }}</p>
+                {% endif %}
+                {% if blog.fourth_body %}
+                <div><img src="{{ blog.fourth_image.url }}" alt="" style="text-align: center; border-radius: 10px;width: 300px; height: auto;"></div>
+                <p class="fourteen regular">{{ blog.fourth_text|safe }}</p>
+                {% endif %}
+                {% if blog.fifth_body %}
+                <div><img src="{{ blog.fifth_image.url }}" alt="" style="text-align: center; border-radius: 10px;width: 300px; height: auto;"></div>
+                <p class="fourteen regular">{{ blog.fifth_text|safe }}</p>
+                {% endif %}
+                {% if blog.sixth_body %}
+                <div><img src="{{ blog.sixth_image.url }}" alt="" style="text-align: center; border-radius: 10px;width: 300px; height: auto;"></div>
+                <p class="fourteen regular">{{ blog.sixth_text|safe }}</p>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="share">
+                <span class="bold fourteen">Share this article</span>
+                <div class="links">
+                    <a href="https://www.facebook.com/sharer.php?u={{ request.path }}"><img src="{% static 'images/icons/Facebook.png' %}" alt=""></a>
+                    <a onclick="CopyLink()"><img src="{% static 'images/icons/LinkedIn.png' %}" alt=""></a>
+                    <a onclick="CopyLink()"><img src="{% static 'images/icons/WhatsApp.png' %}" alt=""></a>
+                    <a onclick="CopyLink()"><img src="{% static 'images/icons/Telegram.png' %}" alt=""></a>
+                    <a onclick="CopyLink()"><img src="{% static 'images/icons/share.png' %}" alt=""></a>
+                </div>
+            </div>
+            <div class="like-comment">
+                <div class="likes">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'blog-like' pk=blog.blog_id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit"><img src="{% static 'images/icons/like.png' %}" alt=""></button>
+                    </form>
+                    {% endif %}
+                    <span class="regular fourteen"> {{ blog.total_likes }} likes</span>
+                </div>
+                <div class="likes">
+                    <form action="">
+                        {% csrf_token %}
+                        <button disabled><img src="{% static 'images/icons/messages-2.png' %}" alt=""></button>
+                    </form>
+                    <span class="regular fourteen"> {{ blog.total_comments }} Comments</span>
+                </div>
+            </div>
+            {% if user.is_authenticated %}
+            <form action="{% url 'blog-comment' pk=blog.blog_id %}" method="POST">
+                {% csrf_token %}
+                <textarea name="ans" id="textinputfield2" placeholder="Leave a comment"></textarea>
+                <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+            </form>
+            {% endif %}
+            <div class="odfa">
+                <p class="regular fourteen">Comments ({{ blog.total_comments }})</p>
+                {% for comment in comments %}
+                <div class="ans">
+                    <div class="pp-text">
+                        <div class="main-ans">
+                            <img src="{{ comment.userimage.url }}" alt="">
+                            <span class="fourteen regular"><span><a href="#" class="blue">{{ comment.fullname }}</a></span><br>{{ comment.comment_body|safe }} {% if comment.username == user.username %} <br><a href="{% url 'delete-comment' pk=comment.comment_id %}" class="warning">    Delete</a>{% endif %}</span>
+                        </div>
+                        {% for reply in comment.replies.all %}
+                        <div class="reply-ans">
+                            <div class="main-ans">
+                                <img src="{{ reply.userimage.url }}" alt="">
+                                <span class="fourteen regular"><span><a href="#" class="blue">{{ reply.fullname }}</a></span><br>{{ reply.reply_comment_body|safe }} {% if reply.username == user.username %} <br><a onclick="reveal('{{ reply.reply_comment_id }}')" class="blue">Edit   </a><a href="{% url 'delete-reply-comment' pk=reply.reply_comment_id %}" class="warning">    Delete</a>{% endif %}</span>
+                            </div>
+                        </div>
+                        <div class="reply-box" id="{{ reply.reply_comment_id }}">
+                            {% if user.is_authenticated %}
+                            <form action="{% url 'edit-reply-comment' pk=reply.reply_comment_id %}" class="reply-form" method="POST">
+                                {% csrf_token %}
+                                <textarea name="ans" id="textinputfield" placeholder="">{{ reply.reply_comment_body }}</textarea>
+                                <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+                            </form>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        {% if user.is_authenticated %}
+                        <div class="reply-box" id="{{ comment.comment_id }}">
+                            <form action="{% url 'reply-comment' pk=comment.comment_id %}" class="reply-form" method="POST">
+                                {% csrf_token %}
+                                <textarea name="ans" id="textinputfield" placeholder="Reply this comment"></textarea>
+                                <input type="submit" value="Submit" class="submit-btn" id="inputfield submit-btn">
+                            </form>
+                        </div>
+                    </div>
+                    <a onclick="reveal('{{ comment.comment_id }}')" class="reply fourteen blue bold">&#11148; Reply</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

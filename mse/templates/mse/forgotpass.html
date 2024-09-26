@@ -1,0 +1,19 @@
+{% extends 'mse/base.html' %}
+{% load static %}
+
+{% block title %}
+OTP
+{% endblock %}
+
+{% block body %}
+<div class="conatiner">
+    <p class="regular fourteen warning" style="text-align: center;">{{ message }}</p>
+    <h2 style="text-align: center;">Enter the otp code that is sent to {{ email }}</h2>
+    <form action="{% url 'forgotpass' pk=email %}" method="POST">
+        {% csrf_token %}
+        <input type="text" name="otpcode" id="inputfield" placeholder="Enter otp code">
+        <input type="submit" value="Submit" class="submit-btn" id="submit-btn">
+    </form>
+    <p class="regular eighteen" style="text-align: center;">You will get a otp code to verify the password changing process.</p>
+</div>
+{% endblock %}
