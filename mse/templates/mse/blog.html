@@ -1,6 +1,13 @@
 {% extends 'mse/base.html' %}
 {% load static %}
 
+{% block meta_links %}
+<meta property="og:image" content="{{ blog.banner.url }}"/>
+<meta property="og:title" content="{{ blog.title }}"/>
+<meta property="og:description" content="{{ blog.main_body|slice:':20' }}"/>
+<meta property="og:url" content="{% url 'blog' pk=blog.blog_id %}"/>
+{% endblock %}
+
 {% block title %}
 {{ blog.title }}
 {% endblock %}
