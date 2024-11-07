@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block meta_links %}
-<meta property="og:image" content="{{ blog.banner.url }}"/>
+<meta property="og:type" content="article"/>
+<meta property="og:image" content="{{ request.build_absolute_uri(blog.banner.url) }}"/>
 <meta property="og:title" content="{{ blog.title }}"/>
-<meta property="og:description" content="{{ blog.main_body|slice:':20' }}"/>
-<meta property="og:url" content="{% url 'blog' pk=blog.blog_id %}"/>
+<meta property="og:description" content="{{ blog.main_body|slice:':100' }}"/>
+<meta property="og:url" content="{{ request.build_absolute_uri }}"/>
+<meta property="og:site_name" content="Materials Science Hub"/>
 {% endblock %}
 
 {% block title %}
@@ -55,7 +57,7 @@
             <div class="share">
                 <span class="bold fourteen">Share this article</span>
                 <div class="links">
-                    <a href="https://www.facebook.com/sharer.php?u={{ request.path }}"><img src="{% static 'images/icons/Facebook.png' %}" alt=""></a>
+                    <a href="https://www.facebook.com/sharer.php?u={{ request.build_absolute_uri }}"><img src="{% static 'images/icons/Facebook.png' %}" alt=""></a>
                     <a onclick="CopyLink()"><img src="{% static 'images/icons/LinkedIn.png' %}" alt=""></a>
                     <a onclick="CopyLink()"><img src="{% static 'images/icons/WhatsApp.png' %}" alt=""></a>
                     <a onclick="CopyLink()"><img src="{% static 'images/icons/Telegram.png' %}" alt=""></a>
