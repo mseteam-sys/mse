@@ -3,7 +3,7 @@
 
 {% block meta_links %}
 <meta property="og:type" content="article"/>
-<meta property="og:image" content="{{ request.build_absolute_uri(blog.banner.url) }}"/>
+<meta property="og:image" content="{{ blog.banner.url }}"/>
 <meta property="og:title" content="{{ blog.title }}"/>
 <meta property="og:description" content="{{ blog.main_body|slice:':100' }}"/>
 <meta property="og:url" content="{{ request.build_absolute_uri }}"/>
