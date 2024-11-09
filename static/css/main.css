@@ -309,7 +309,7 @@ footer > .container > .footer-container {
     }
     .first-block > img{
         height: 400px;
-        width: auto;
+        width: 100%;
         object-fit: cover;
     }
     .first-block > .container{
