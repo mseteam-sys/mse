@@ -309,7 +309,8 @@ footer > .container > .footer-container {
     }
     .first-block > img{
         height: 500px;
-        width: 100%;
+        width: auto;
+        opacity: 0.9;
     }
     .first-block > .container{
         width: 100%;
@@ -319,11 +320,11 @@ footer > .container > .footer-container {
         width: fit-content;
     }
     .first-block > .container > h1{
-        font-size: 28px;
+        font-size: 30px;
     }
     .first-block > .container > p{
         text-align: left;
-        font-size: 14px;
+        font-size: 18px;
     }
 }
 .index-block > .container{
@@ -379,6 +380,15 @@ footer > .container > .footer-container {
         align-items: center;
         justify-content: center;
         text-align: center;
+    }
+    .index-block > .container > .texts > .forty{
+        font-size: 26px;
+    }
+    .index-block > .container > .texts > .thirty{
+        font-size: 20px;
+    }
+    .index-block > .container > .texts > .eighteen{
+        font-size: 14px;
     }
     .index-block > .container > .pic > img{
         width: 300px;
@@ -457,6 +467,7 @@ footer > .container > .footer-container {
     width: 600px;
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: 10px;
 }
 .blog-page > .blog-header > .header-image > img{
@@ -517,8 +528,14 @@ footer > .container > .footer-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: flex-start;
+}
+.blog-body > div{
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
+
 
 /* ------------- books page --------- */
 .books-page > .container > .books{
@@ -622,7 +639,7 @@ footer > .container > .footer-container {
 .rumse > .container > .name-resources > .resources > .resource-links{
     margin-top: 40px;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto;
     gap: 30px;
     justify-content: center;
 }
@@ -719,14 +736,14 @@ footer > .container > .footer-container {
 }
 .ru-mse-2 > .courselists{
     display: grid;
-    grid-template-columns: 150px 150px 150px 150px;
+    grid-template-columns: auto auto;
     gap: 10px;
     row-gap: 30px;
     margin-bottom: 30px;
 }
 @media screen and (max-width: 1024px){
     .ru-mse-2 > .courselists{
-        grid-template-columns: 150px 150px;
+        grid-template-columns: auto;
     }
 }
 .ru-mse-2 > .courselists > span > a{
@@ -833,7 +850,7 @@ footer > .container > .footer-container {
 }
 .odfa > .ans > .pp-text > .main-ans{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
 }
 .odfa > .ans > .pp-text > .main-ans > img{
@@ -846,7 +863,7 @@ footer > .container > .footer-container {
 }
 .odfa > .ans > .pp-text > .reply-ans > .main-ans{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
 }
 .odfa > .ans > .pp-text > .reply-ans > .main-ans > img{

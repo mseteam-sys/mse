@@ -95,13 +95,13 @@
                 <div class="ans">
                     <div class="pp-text">
                         <div class="main-ans">
-                            <img src="{{ comment.userimage.url }}" alt="">
+                            <img src="{{ comment.userimage.url }}" alt="" style="border-radius: 50%;width: 50px;height: 50px;">
                             <span class="fourteen regular"><span><a href="#" class="blue">{{ comment.fullname }}</a></span><br>{{ comment.comment_body|safe }} {% if comment.username == user.username %} <br><a href="{% url 'delete-comment' pk=comment.comment_id %}" class="warning">    Delete</a>{% endif %}</span>
                         </div>
                         {% for reply in comment.replies.all %}
                         <div class="reply-ans">
                             <div class="main-ans">
-                                <img src="{{ reply.userimage.url }}" alt="">
+                                <img src="{{ reply.userimage.url }}" alt="" style="border-radius: 50%;width: 50px;height: 50px;">
                                 <span class="fourteen regular"><span><a href="#" class="blue">{{ reply.fullname }}</a></span><br>{{ reply.reply_comment_body|safe }} {% if reply.username == user.username %} <br><a onclick="reveal('{{ reply.reply_comment_id }}')" class="blue">Edit   </a><a href="{% url 'delete-reply-comment' pk=reply.reply_comment_id %}" class="warning">    Delete</a>{% endif %}</span>
                             </div>
                         </div>
