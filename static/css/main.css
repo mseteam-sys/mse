@@ -308,9 +308,9 @@ footer > .container > .footer-container {
         justify-content: flex-start;
     }
     .first-block > img{
-        height: 500px;
+        height: 400px;
         width: auto;
-        opacity: 0.9;
+        object-fit: cover;
     }
     .first-block > .container{
         width: 100%;
